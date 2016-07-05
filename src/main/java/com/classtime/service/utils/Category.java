@@ -7,7 +7,7 @@ import java.util.*;
  */
 public enum Category {
 
-    ACTIVITY(2),HOTEL(4),PLAN(21),AREA(22);
+    ACTIVITY(2),HOTEL(4),PLAN(21),MUSIC(22);
     private long nCode;
 
      Category(long _nCode) {
@@ -17,7 +17,7 @@ public enum Category {
     public long toValue() {
         return this.nCode;
     }
-    //categroy 1：餐饮，2：景点：3：导游：4：酒店，5：包车：6：签证：17：行程单：18：线路 19：用车服务 20：产品包
+    //音乐
     public static void main(String[] args) {
         //System.out.println(Category.ACTIVITY.toValue());
        // System.out.println(Category.ACTIVITY);
