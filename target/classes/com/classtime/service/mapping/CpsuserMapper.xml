@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.classtime.service.dao.CpsuserMapper">
+    <resultMap id="BaseResultMap" type="com.classtime.service.model.Cpsuser">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="loginname" property="loginname" jdbcType="VARCHAR"/>
+        <result column="passwd" property="passwd" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="registertime" property="registertime" jdbcType="TIMESTAMP"/>
+        <result column="validatecode" property="validatecode" jdbcType="VARCHAR"/>
+        <result column="contactphone" property="contactphone" jdbcType="VARCHAR"/>
+        <result column="isorg" property="isorg" jdbcType="TINYINT"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="ischeck" property="isorg" jdbcType="BIT"/>
+        <result column="randomcode" property="randomcode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, nickname, loginname, passwd, email, status, registertime, validatecode, contactphone, isorg, updatetime,ischeck,randomcode
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from cpsuser
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="findByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from cpsuser
+        where loginname =#{loginname,jdbcType=VARCHAR}
+    </select>
+    <select id="findByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from cpsuser
+        where email =#{email,jdbcType=VARCHAR} order by id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cpsuser
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.classtime.service.model.Cpsuser">
+        insert into cpsuser (nickname, loginname,
+        passwd, email, status,
+        registertime, validatecode,contactphone,
+        isorg, updatetime,ischeck,randomcode
+        )
+        values ( #{nickname,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR},
+        #{passwd,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=BIT},
+        #{registertime,jdbcType=TIMESTAMP}, #{validatecode,jdbcType=VARCHAR},#{contactphone,jdbcType=VARCHAR},
+
+         #{isorg,jdbcType=TINYINT},
+        #{updatetime,jdbcType=TIMESTAMP}, #{ischeck,jdbcType=BIT}, #{randomcode,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.classtime.service.model.Cpsuser">
+        insert into cpsuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="loginname != null">
+                loginname,
+            </if>
+            <if test="passwd != null">
+                passwd,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="registertime != null">
+                registertime,
+            </if>
+            <if test="validatecode != null">
+                validatecode,
+            </if>
+
+            <if test="contactphone != null">
+                contactphone,
+            </if>
+
+            <if test="isorg != null">
+                isorg,
+            </if>
+
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="ischeck != null">
+                ischeck,
+            </if>
+            <if test="randomcode != null">
+                randomcode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginname != null">
+                #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="passwd != null">
+                #{passwd,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIT},
+            </if>
+            <if test="registertime != null">
+                #{registertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="validatecode != null">
+                #{validatecode,jdbcType=VARCHAR},
+            </if>
+
+            <if test="contactphone != null">
+                #{contactphone,jdbcType=VARCHAR},
+            </if>
+
+            <if test="isorg != null">
+                #{isorg,jdbcType=TINYINT},
+            </if>
+
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ischeck != null">
+                #{ischeck,jdbcType=BIT},
+            </if>
+            <if test="randomcode != null">
+                #{randomcode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.classtime.service.model.Cpsuser">
+        update cpsuser
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginname != null">
+                loginname = #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="passwd != null">
+                passwd = #{passwd,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status= #{status,jdbcType=TINYINT},
+            </if>
+            <if test="registertime != null">
+                registertime = #{registertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="validatecode != null">
+                validatecode = #{validatecode,jdbcType=VARCHAR},
+            </if>
+
+            <if test="contactphone != null">
+                contactphone = #{contactphone,jdbcType=VARCHAR},
+            </if>
+
+            <if test="isorg != null">
+                isorg = #{isorg,jdbcType=TINYINT},
+            </if>
+
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ischeck != null">
+                ischeck = #{ischeck,jdbcType=BIT},
+            </if>
+            <if test="randomcode != null">
+                randomcode= #{randomcode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.classtime.service.model.Cpsuser">
+    update cpsuser
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      loginname = #{loginname,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status= #{status,jdbcType=TINYINT},
+      registertime = #{registertime,jdbcType=TIMESTAMP},
+      validatecode = #{validatecode,jdbcType=VARCHAR},
+
+      contactphone = #{contactphone,jdbcType=VARCHAR},
+
+      isorg = #{isorg,jdbcType=TINYINT},
+
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      ischeck = #{ischeck,jdbcType=BIT},
+      randomcode=#{randomcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="countBySelective" resultType="java.lang.Integer" parameterType="map">
+        select count(id) from cpsuser
+        <where>
+            <if test="status != null and status!=99">
+                status = #{status,jdbcType=TINYINT}
+            </if>
+
+            <if test="companyname != null">
+                and companyname like CONCAT('%',#{companyname,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectBySelective" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from cpsuser
+        <where>
+            <if test="status != null and status!=99">
+                status = #{status,jdbcType=TINYINT}
+            </if>
+            <if test="companyname != null">
+                and companyname like CONCAT('%',#{companyname,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="nickname != null">
+                and nickname = #{nickname,jdbcType=VARCHAR}
+            </if>
+            <if test="loginname != null">
+                and loginname = #{loginname,jdbcType=VARCHAR}
+            </if>
+
+            <if test="email != null">
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="contactphone != null">
+                and contactphone = #{contactphone,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by id desc
+        <if test="pageSize != null and pageSize!=''">
+            limit #{indexstart,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.classtime.service.dao.AreaMapper">
+    <resultMap id="BaseResultMap" type="com.classtime.service.model.Area">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="parentid" property="parentid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="enname" property="enname" jdbcType="VARCHAR"/>
+        <result column="areadesc" property="areadesc" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="FLOAT"/>
+        <result column="latitude" property="latitude" jdbcType="FLOAT"/>
+        <result column="asid" property="asid" jdbcType="BIGINT"/>
+
+        <result column="currency" property="currency" jdbcType="BIGINT"/>
+
+
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, parentid, name, enname, areadesc,longitude,latitude,asid,currency
+    </sql>
+    <sql id="Blob_Column_List">
+        details
+    </sql>
+    <resultMap id="ResultMapWithBLOBs" type="com.classtime.service.model.Area" extends="BaseResultMap">
+        <result column="details" property="details" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="Blob_Column_List"/>
+        from area
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <select id="selectByAsid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from area
+        where asid = #{asid,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectBySelective" resultMap="BaseResultMap" parameterType="com.classtime.service.model.Area">
+        select
+        <include refid="Base_Column_List"/>
+        from area
+        <where>
+            <if test="parentid != null">
+                parentid = #{parentid,jdbcType=BIGINT}
+            </if>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="enname != null">
+                and enname = #{enname,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from area
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.classtime.service.model.Area">
+    insert into area (parentid, name, enname, areadesc,longitude,latitude,details,asid,currency)
+   values (#{parentid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},#{enname,jdbcType=VARCHAR}, #{areadesc,jdbcType=VARCHAR},
+    #{longitude,jdbcType=FLOAT}, #{latitude,jdbcType=FLOAT}, #{details,jdbcType=LONGVARCHAR},#{asid,jdbcType=BIGINT}
+    ,#{currency,jdbcType=BIGINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.classtime.service.model.Area">
+        insert into area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="parentid != null">
+                parentid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="enname != null">
+                enname,
+            </if>
+            <if test="areadesc != null">
+                areadesc,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="details != null">
+                details,
+            </if>
+            <if test="asid != null">
+                asid,
+            </if>
+            <if test="currency != null">
+                currency,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="parentid != null">
+                #{parentid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="enname != null">
+                #{enname,jdbcType=VARCHAR},
+            </if>
+            <if test="areadesc != null">
+                #{areadesc,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=FLOAT},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=FLOAT},
+            </if>
+            <if test="details != null">
+                #{details,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="asid != null">
+                #{asid,jdbcType=BIGINT}
+            </if>
+            <if test="currency != null">
+                #{currency,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.classtime.service.model.Area">
+        update area
+        <set>
+            <if test="parentid != null">
+                parentid = #{parentid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="enname != null">
+                enname = #{enname,jdbcType=VARCHAR},
+            </if>
+            <if test="areadesc != null">
+                areadesc = #{areadesc,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude= #{longitude,jdbcType=FLOAT},
+            </if>
+            <if test="latitude != null">
+                latitude= #{latitude,jdbcType=FLOAT},
+            </if>
+            <if test="details != null">
+                details= #{details,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="asid != null">
+                asid= #{asid,jdbcType=BIGINT},
+            </if>
+            <if test="currency != null">
+                currency= #{currency,jdbcType=BIGINT}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.classtime.service.model.Area">
+    update area
+    set parentid = #{parentid,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      enname = #{enname,jdbcType=VARCHAR},
+      areadesc = #{areadesc,jdbcType=VARCHAR},
+      longitude=  #{longitude,jdbcType=FLOAT},
+      latitude= #{latitude,jdbcType=FLOAT},
+      details= #{details,jdbcType=LONGVARCHAR},
+      asid=#{asid,jdbcType=BIGINT},
+      currency= #{currency,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="selectListByInID" resultType="com.classtime.service.model.Area">
+        select
+        <include refid="Base_Column_List"/>
+        from area
+        where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
