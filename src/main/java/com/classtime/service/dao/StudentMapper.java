@@ -2,6 +2,8 @@ package com.classtime.service.dao;
 
 import com.classtime.service.model.Student;
 
-public interface StudentMapper extends  BaseObjectMapper<Student,Integer>{
+import java.util.List;
 
+public interface StudentMapper extends  BaseObjectMapper<Student,Integer>{
+    List<Student>  selectForUser(int uid);
 }

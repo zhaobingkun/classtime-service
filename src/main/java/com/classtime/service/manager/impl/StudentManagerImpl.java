@@ -6,6 +6,8 @@ import com.classtime.service.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/6/17.
  */
@@ -48,6 +50,12 @@ public class StudentManagerImpl implements StudentManager {
     @Override
     public int updateByPrimaryKey(Student record) {
         int result = studentDao.updateByPrimaryKey(record);
+        return result;
+    }
+
+    @Override
+    public List<Student> selectForUser(int uid) {
+        List<Student> result = studentDao.selectForUser(uid);
         return result;
     }
 }

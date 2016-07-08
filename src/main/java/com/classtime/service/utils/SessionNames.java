@@ -20,6 +20,9 @@ public abstract class SessionNames {
 
 		public static final String NORIGHT_ERROR = "norightError";
 
+    // 用户名字
+    public static final String RANDOMCODE = "randomCode";
+
 		/**
 		 * 最后一次请求的URI
 		 * 
