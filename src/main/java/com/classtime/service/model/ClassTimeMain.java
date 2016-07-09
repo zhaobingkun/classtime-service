@@ -23,7 +23,20 @@ public class ClassTimeMain  extends BaseObject{
 
     private Integer num;
 
+    private Integer leavenum;
+
+    private Integer changenum;
+
+    private Integer makeupnum;
+
+    private Integer extendednum;
+
     private Integer sumnum;
+
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -111,5 +124,37 @@ public class ClassTimeMain  extends BaseObject{
 
     public void setCategoryid(Integer categoryid) {
         this.categoryid = categoryid;
+    }
+
+    public Integer getLeavenum() {
+        return leavenum;
+    }
+
+    public void setLeavenum(Integer leavenum) {
+        this.leavenum = leavenum;
+    }
+
+    public Integer getChangenum() {
+        return changenum;
+    }
+
+    public void setChangenum(Integer changenum) {
+        this.changenum = changenum;
+    }
+
+    public Integer getMakeupnum() {
+        return makeupnum;
+    }
+
+    public void setMakeupnum(Integer makeupnum) {
+        this.makeupnum = makeupnum;
+    }
+
+    public Integer getExtendednum() {
+        return extendednum;
+    }
+
+    public void setExtendednum(Integer extendednum) {
+        this.extendednum = extendednum;
     }
 }

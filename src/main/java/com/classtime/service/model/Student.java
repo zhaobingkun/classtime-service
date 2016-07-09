@@ -19,6 +19,8 @@ public class Student  extends BaseObject{
 
     private Date old;
 
+    private String sno;
+
     private List<ClassTimeMain> classTimeMainList;
 
     public Integer getId() {
@@ -83,5 +85,13 @@ public class Student  extends BaseObject{
 
     public void setClassTimeMainList(List<ClassTimeMain> classTimeMainList) {
         this.classTimeMainList = classTimeMainList;
+    }
+
+    public String getSno() {
+        return sno;
+    }
+
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 }

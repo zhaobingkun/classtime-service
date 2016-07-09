@@ -13,9 +13,13 @@
       <result column="orgclassid" property="orgclassid" jdbcType="INTEGER" />
       <result column="color" property="color" jdbcType="VARCHAR" />
 
+      <result column="leavenum" property="leavenum" jdbcType="INTEGER" />
+      <result column="changenum" property="changenum" jdbcType="INTEGER" />
+      <result column="makeupnum" property="makeupnum" jdbcType="INTEGER" />
+      <result column="extendednum" property="extendednum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color
+    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

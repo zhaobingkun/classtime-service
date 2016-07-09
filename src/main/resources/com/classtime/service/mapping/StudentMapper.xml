@@ -9,11 +9,28 @@
       <result column="old" property="old" jdbcType="TIMESTAMP" />
       <result column="address" property="address" jdbcType="VARCHAR" />
       <result column="school" property="school" jdbcType="VARCHAR" />
+      <result column="sno" property="sno" jdbcType="VARCHAR" />
+
+      <collection property="classTimeMainList" ofType="com.classtime.service.model.ClassTimeMain">
+          <id column="m_id" property="id" jdbcType="BIGINT" />
+          <result column="m_sid" property="sid" jdbcType="BIGINT" />
+          <result column="m_begintime" property="begintime" jdbcType="TIMESTAMP" />
+          <result column="m_endtime" property="endtime" jdbcType="TIMESTAMP" />
+          <result column="m_num" property="num" jdbcType="INTEGER" />
+          <result column="m_sumnum" property="sumnum" jdbcType="INTEGER" />
+          <result column="m_classname" property="classname" jdbcType="VARCHAR" />
+          <result column="m_color" property="color" jdbcType="VARCHAR" />
+          <result column="m_leavenum" property="leavenum" jdbcType="INTEGER" />
+          <result column="m_changenum" property="changenum" jdbcType="INTEGER" />
+          <result column="m_makeupnum" property="makeupnum" jdbcType="INTEGER" />
+          <result column="m_extendednum" property="extendednum" jdbcType="INTEGER" />
+      </collection>
+
 
 
   </resultMap>
   <sql id="Base_Column_List" >
-    id, uid, name,sex,old,address,school
+    id, uid, name,sex,old,address,school,sno
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,7 +43,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.classtime.service.model.Student" >
-    insert into student (id, uid, name,sex,old,address,school
+    insert into student (id, uid, name,sex,old,address,school,sno
       )
     values (#{id,jdbcType=INTEGER},
             #{uid,jdbcType=INTEGER},
@@ -35,6 +52,7 @@
             #{old,jdbcType=TIMESTAMP},
             #{address,jdbcType=VARCHAR},
              #{school,jdbcType=VARCHAR},
+              #{sno,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.classtime.service.model.Student" >
@@ -63,6 +81,10 @@
         <if test="school != null" >
             school,
         </if>
+        <if test="sno != null" >
+            sno,
+        </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -87,6 +109,10 @@
         <if test="school != null" >
             #{school,jdbcType=VARCHAR},
         </if>
+        <if test="sno != null" >
+            #{sno,jdbcType=VARCHAR},
+        </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.classtime.service.model.Student" >
@@ -111,6 +137,10 @@
         <if test="school != null" >
             school = #{school,jdbcType=VARCHAR},
         </if>
+
+        <if test="sno != null" >
+            sno = #{sno,jdbcType=VARCHAR},
+        </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -121,16 +151,22 @@
       sex =      #{sex,jdbcType=INTEGER},
       old =      #{old,jdbcType=TIMESTAMP},
       address =  #{address,jdbcType=VARCHAR},
-      school =   #{school,jdbcType=VARCHAR}
+      school =   #{school,jdbcType=VARCHAR},
+       sno =   #{sno,jdbcType=VARCHAR}
+
     where id = #{id,jdbcType=INTEGER}
   </update>
 
 
     <select id="selectForUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
-        <include refid="Base_Column_List" />
-        from student
-        where uid = #{uid,jdbcType=INTEGER}
+        s.id, s.uid,s.sno,s.name,s.sex,s.old,s.address,s.school,
+        c.id as m_id, c.sid as m_sid, c.begintime as m_begintime, c.endtime as m_endtime, c.num as m_num, c.sumnum as m_sumnum,c.classname as m_classname,c.color as m_color,
+        c.leavenum as m_leavenum,c.changenum as m_changenum,c.makeupnum as m_makeupnm,c.extendednum as m_extendednum
+        from student s,classtimemain c
+        where c.sid=s.id
+
+        and uid = #{uid,jdbcType=INTEGER}
     </select>
 
 </mapper>
