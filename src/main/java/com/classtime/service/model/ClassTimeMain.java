@@ -33,6 +33,8 @@ public class ClassTimeMain  extends BaseObject{
 
     private Integer sumnum;
 
+    private String classaddress;
+
 
 
 
@@ -156,5 +158,13 @@ public class ClassTimeMain  extends BaseObject{
 
     public void setExtendednum(Integer extendednum) {
         this.extendednum = extendednum;
+    }
+
+    public String getClassaddress() {
+        return classaddress;
+    }
+
+    public void setClassaddress(String classaddress) {
+        this.classaddress = classaddress;
     }
 }

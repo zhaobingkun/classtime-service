@@ -17,9 +17,13 @@
       <result column="changenum" property="changenum" jdbcType="INTEGER" />
       <result column="makeupnum" property="makeupnum" jdbcType="INTEGER" />
       <result column="extendednum" property="extendednum" jdbcType="INTEGER" />
+
+      <result column="classaddress" property="classaddress" jdbcType="VARCHAR" />
+
+
   </resultMap>
   <sql id="Base_Column_List" >
-    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum
+    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum,classaddress
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -33,12 +37,12 @@
   </delete>
   <insert id="insert" parameterType="com.classtime.service.model.ClassTimeMain" >
     insert into classtimemain (id, sid, begintime,
-      endtime, num, sumnum,categoryid,classname,orgclassid,color
+      endtime, num, sumnum,categoryid,classname,orgclassid,color,classaddress
       )
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP},
             #{endtime,jdbcType=TIMESTAMP}, #{num,jdbcType=INTEGER}, #{sumnum,jdbcType=INTEGER},
             #{categoryid,jdbcType=INTEGER},#{classname,jdbcType=VARCHAR}, #{orgclassid,jdbcType=INTEGER},
-            #{color,jdbcType=VARCHAR}
+            #{color,jdbcType=VARCHAR},#{classaddress,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.classtime.service.model.ClassTimeMain" >
@@ -76,6 +80,9 @@
             color,
         </if>
 
+        <if test="classaddress != null" >
+            classaddress,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -108,6 +115,10 @@
         </if>
         <if test="color != null" >
             #{color,jdbcType=VARCHAR},
+        </if>
+
+        <if test="classaddress != null" >
+            #{classaddress,jdbcType=VARCHAR},
         </if>
     </trim>
   </insert>
@@ -144,6 +155,11 @@
             color = #{color,jdbcType=VARCHAR},
         </if>
 
+        <if test="classaddress != null" >
+            classaddress = #{classaddress,jdbcType=VARCHAR},
+        </if>
+
+
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -157,7 +173,8 @@
       categoryid= #{categoryid,jdbcType=INTEGER},
       classname = #{classname,jdbcType=VARCHAR},
       orgclassid = #{orgclassid,jdbcType=INTEGER},
-      color = #{color,jdbcType=VARCHAR}
+      color = #{color,jdbcType=VARCHAR},
+      classaddress = #{classaddress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
