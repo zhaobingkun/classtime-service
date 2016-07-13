@@ -2,6 +2,8 @@ package com.classtime.service.dao;
 
 import com.classtime.service.model.ClassTimeMain;
 
-public interface ClassTimeMainMapper  extends  BaseObjectMapper<ClassTimeMain,Integer>{
+import java.util.List;
 
+public interface ClassTimeMainMapper  extends  BaseObjectMapper<ClassTimeMain,Integer>{
+    List<ClassTimeMain> selectClassMainForSid(int sid);
 }

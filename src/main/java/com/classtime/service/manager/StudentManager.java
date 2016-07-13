@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface StudentManager extends BaseObjectManager<Student,Integer> {
     List<Student> selectForUser(int uid);
+
+    List<Student>  selectForUserAndClass(int uid);
 }

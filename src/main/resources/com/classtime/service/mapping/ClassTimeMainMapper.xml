@@ -19,11 +19,12 @@
       <result column="extendednum" property="extendednum" jdbcType="INTEGER" />
 
       <result column="classaddress" property="classaddress" jdbcType="VARCHAR" />
+      <result column="classtime" property="classtime" jdbcType="VARCHAR" />
 
 
   </resultMap>
   <sql id="Base_Column_List" >
-    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum,classaddress
+    id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum,classaddress,classtime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -37,15 +38,15 @@
   </delete>
   <insert id="insert" parameterType="com.classtime.service.model.ClassTimeMain" >
     insert into classtimemain (id, sid, begintime,
-      endtime, num, sumnum,categoryid,classname,orgclassid,color,classaddress
+      endtime, num, sumnum,categoryid,classname,orgclassid,color,classaddress,classtime
       )
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP},
             #{endtime,jdbcType=TIMESTAMP}, #{num,jdbcType=INTEGER}, #{sumnum,jdbcType=INTEGER},
             #{categoryid,jdbcType=INTEGER},#{classname,jdbcType=VARCHAR}, #{orgclassid,jdbcType=INTEGER},
-            #{color,jdbcType=VARCHAR},#{classaddress,jdbcType=VARCHAR}
+            #{color,jdbcType=VARCHAR},#{classaddress,jdbcType=VARCHAR,#{classtime,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.classtime.service.model.ClassTimeMain" >
+  <insert id="insertSelective"   useGeneratedKeys="true"  parameterType="com.classtime.service.model.ClassTimeMain" >
     insert into classtimemain
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -83,6 +84,10 @@
         <if test="classaddress != null" >
             classaddress,
         </if>
+
+        <if test="classtime != null" >
+            classtime,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -119,6 +124,10 @@
 
         <if test="classaddress != null" >
             #{classaddress,jdbcType=VARCHAR},
+        </if>
+
+        <if test="classtime != null" >
+            #{classtime,jdbcType=VARCHAR},
         </if>
     </trim>
   </insert>
@@ -159,7 +168,9 @@
             classaddress = #{classaddress,jdbcType=VARCHAR},
         </if>
 
-
+        <if test="classtime != null" >
+            classtime = #{classtime,jdbcType=VARCHAR},
+        </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -174,7 +185,17 @@
       classname = #{classname,jdbcType=VARCHAR},
       orgclassid = #{orgclassid,jdbcType=INTEGER},
       color = #{color,jdbcType=VARCHAR},
-      classaddress = #{classaddress,jdbcType=VARCHAR}
+      classaddress = #{classaddress,jdbcType=VARCHAR},
+      classtime = #{classtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+    <select id="selectClassMainForSid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from classtimemain
+        where  sid = #{sid,jdbcType=INTEGER}
+    </select>
+
 </mapper>

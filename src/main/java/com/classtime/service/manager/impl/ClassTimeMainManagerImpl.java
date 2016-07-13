@@ -6,6 +6,8 @@ import com.classtime.service.model.ClassTimeMain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/6/17.
  */
@@ -47,6 +49,12 @@ public class ClassTimeMainManagerImpl implements ClassTimeMainManager {
     @Override
     public int updateByPrimaryKey(ClassTimeMain record) {
         int result = classTimeMainDao.updateByPrimaryKey(record);
+        return result;
+    }
+
+    @Override
+    public List<ClassTimeMain> selectClassMainForSid(int sid) {
+        List<ClassTimeMain> result = classTimeMainDao.selectClassMainForSid(sid);
         return result;
     }
 }

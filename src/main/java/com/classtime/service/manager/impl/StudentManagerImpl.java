@@ -58,4 +58,10 @@ public class StudentManagerImpl implements StudentManager {
         List<Student> result = studentDao.selectForUser(uid);
         return result;
     }
+
+    @Override
+    public List<Student> selectForUserAndClass(int uid) {
+        List<Student> result = studentDao.selectForUserAndClass(uid);
+        return result;
+    }
 }

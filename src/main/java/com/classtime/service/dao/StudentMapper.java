@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface StudentMapper extends  BaseObjectMapper<Student,Integer>{
     List<Student>  selectForUser(int uid);
+
+    List<Student>  selectForUserAndClass(int uid);
 }

@@ -158,7 +158,7 @@
   </update>
 
 
-    <select id="selectForUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectForUserAndClass" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         s.id, s.uid,s.sno,s.name,s.sex,s.old,s.address,s.school,
         c.id as m_id, c.sid as m_sid, c.begintime as m_begintime, c.endtime as m_endtime, c.num as m_num, c.sumnum as m_sumnum,c.classname as m_classname,c.color as m_color,
@@ -167,6 +167,13 @@
         where c.sid=s.id
 
         and uid = #{uid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectForUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from student
+        where  uid = #{uid,jdbcType=INTEGER}
     </select>
 
 </mapper>

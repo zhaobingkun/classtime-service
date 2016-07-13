@@ -35,6 +35,9 @@ public class ClassTimeMain  extends BaseObject{
 
     private String classaddress;
 
+    private String weekday;
+
+    private String classtime;
 
 
 
@@ -166,5 +169,21 @@ public class ClassTimeMain  extends BaseObject{
 
     public void setClassaddress(String classaddress) {
         this.classaddress = classaddress;
+    }
+
+    public String getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(String weekday) {
+        this.weekday = weekday;
+    }
+
+    public String getClasstime() {
+        return classtime;
+    }
+
+    public void setClasstime(String classtime) {
+        this.classtime = classtime;
     }
 }

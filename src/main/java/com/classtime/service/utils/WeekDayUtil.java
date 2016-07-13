@@ -105,7 +105,7 @@ public class WeekDayUtil {
 
     public static void main(String[] args) {
         //输出从2015-01-01到2015-01-21之间的所有星期一和星期二的日期。
-       /* List daysOfOneWeek = new ArrayList();
+        List daysOfOneWeek = new ArrayList();
         daysOfOneWeek.add(6);  //周六
         daysOfOneWeek.add(0);  //周日
 
@@ -114,11 +114,11 @@ public class WeekDayUtil {
         for(int i=0;i<daysNeedBookList.size();i++){
             String s=daysNeedBookList.get(i).toString();
             System.out.println(s);
-        }*/
+        }
 
         //System.out.println(MD5.sign("115.28.222.93", "qicheyitiao20160707", ""));
 
-        Random ran=new Random();
+       /* Random ran=new Random();
         String tmpRan ="2";// ran.nextInt(9999)+"";
 
         System.out.println("tmpRan="+tmpRan);
@@ -130,7 +130,7 @@ public class WeekDayUtil {
             }
         }
 
-        System.out.println("tmpRan="+tmpRan);
+        System.out.println("tmpRan="+tmpRan);*/
 
     }
 }
