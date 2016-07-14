@@ -55,7 +55,7 @@
               #{sno,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.classtime.service.model.Student" >
+  <insert id="insertSelective" useGeneratedKeys="true"   parameterType="com.classtime.service.model.Student" >
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
