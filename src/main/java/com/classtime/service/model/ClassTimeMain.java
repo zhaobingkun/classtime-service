@@ -17,7 +17,11 @@ public class ClassTimeMain  extends BaseObject{
 
     private String color;
 
+    private String begintimeStr;
+
     private Date begintime;
+
+    private String endtimeStr;
 
     private Date endtime;
 
@@ -185,5 +189,21 @@ public class ClassTimeMain  extends BaseObject{
 
     public void setClasstime(String classtime) {
         this.classtime = classtime;
+    }
+
+    public String getBegintimeStr() {
+        return begintimeStr;
+    }
+
+    public void setBegintimeStr(String begintimeStr) {
+        this.begintimeStr = begintimeStr;
+    }
+
+    public String getEndtimeStr() {
+        return endtimeStr;
+    }
+
+    public void setEndtimeStr(String endtimeStr) {
+        this.endtimeStr = endtimeStr;
     }
 }
