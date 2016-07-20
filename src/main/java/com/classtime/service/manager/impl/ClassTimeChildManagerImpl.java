@@ -56,6 +56,7 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
 
     @Override
     public int addClassTimeChildBatch(List<ClassTimeChild> classTimeChildList) {
-        return 0;
+        int result = classTimeChildDao.addCodeBatch(classTimeChildList);
+        return result;
     }
 }

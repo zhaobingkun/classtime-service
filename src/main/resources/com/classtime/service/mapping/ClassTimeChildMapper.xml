@@ -84,10 +84,10 @@
     <insert id="addCodeBatch" useGeneratedKeys="true" parameterType="java.util.List">
 
 
-        insert into classtimechild (code,typeid,companyid,enddate)
+        insert into classtimechild (mid,classdatetime)
         values
         <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.code},#{item.typeid},#{item.companyid},#{item.enddate})
+            (#{item.mid},#{item.classdatetime})
         </foreach>
 
     </insert>
