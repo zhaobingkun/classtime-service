@@ -59,4 +59,10 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
         int result = classTimeChildDao.addCodeBatch(classTimeChildList);
         return result;
     }
+
+    @Override
+    public List<ClassTimeChild> selectByMainId(int mid) {
+        List<ClassTimeChild> result = classTimeChildDao.selectByMainId(mid);
+        return result;
+    }
 }
