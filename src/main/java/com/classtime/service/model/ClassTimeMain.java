@@ -1,6 +1,7 @@
 package com.classtime.service.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class ClassTimeMain  extends BaseObject{
     private static final long serialVersionUID = 7314956568727990574L;
@@ -44,7 +45,7 @@ public class ClassTimeMain  extends BaseObject{
     private String classtime;
 
 
-
+    private List<ClassTimeChild> classTimeChildList;
 
 
     public Integer getId() {
@@ -205,5 +206,13 @@ public class ClassTimeMain  extends BaseObject{
 
     public void setEndtimeStr(String endtimeStr) {
         this.endtimeStr = endtimeStr;
+    }
+
+    public List<ClassTimeChild> getClassTimeChildList() {
+        return classTimeChildList;
+    }
+
+    public void setClassTimeChildList(List<ClassTimeChild> classTimeChildList) {
+        this.classTimeChildList = classTimeChildList;
     }
 }

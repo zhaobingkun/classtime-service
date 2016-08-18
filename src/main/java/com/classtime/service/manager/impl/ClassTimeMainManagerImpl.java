@@ -57,4 +57,10 @@ public class ClassTimeMainManagerImpl implements ClassTimeMainManager {
         List<ClassTimeMain> result = classTimeMainDao.selectClassMainForSid(sid);
         return result;
     }
+
+    @Override
+    public List<ClassTimeMain> selectClassMainById(int mid) {
+        List<ClassTimeMain> result = classTimeMainDao.selectClassMainById(mid);
+        return result;
+    }
 }

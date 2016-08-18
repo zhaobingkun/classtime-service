@@ -22,6 +22,13 @@
       <result column="classtime" property="classtime" jdbcType="VARCHAR" />
 
 
+      <collection property="classTimeChildList" ofType="com.classtime.service.model.ClassTimeChild">
+          <id column="c_id" property="id" jdbcType="BIGINT" />
+          <result column="c_mid" property="mid" jdbcType="VARCHAR" />
+          <result column="c_classdatetime" property="classdatetime" jdbcType="TIMESTAMP" />
+      </collection>
+
+
   </resultMap>
   <sql id="Base_Column_List" >
     id, sid, begintime, endtime, num, sumnum,categoryid,classname,orgclassid,color,leavenum,changenum,makeupnum,extendednum,classaddress,classtime
@@ -197,5 +204,14 @@
         from classtimemain
         where  sid = #{sid,jdbcType=INTEGER}
     </select>
+
+
+    <select id="selectClassMainById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        m.id,m.classname,c.id as c_id,c.classdatetime as c_classdatetime
+        from classtimemain m,classtimechild c
+        where  m.id = c.mid and m.id = #{mid,jdbcType=INTEGER}
+    </select>
+
 
 </mapper>

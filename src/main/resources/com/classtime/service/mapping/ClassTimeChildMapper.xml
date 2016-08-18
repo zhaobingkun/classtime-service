@@ -6,6 +6,7 @@
     <result column="mid" property="mid" jdbcType="INTEGER" />
     <result column="classdatetime" property="classdatetime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
+
   </resultMap>
   <sql id="Base_Column_List" >
     id, mid, classdatetime, status

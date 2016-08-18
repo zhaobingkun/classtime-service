@@ -10,4 +10,6 @@ import java.util.List;
 public interface ClassTimeMainManager extends BaseObjectManager<ClassTimeMain,Integer>  {
 
     List<ClassTimeMain> selectClassMainForSid(int sid);
+
+    List<ClassTimeMain> selectClassMainById(int mid);
 }
