@@ -1,7 +1,10 @@
 package com.classtime.service.utils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/6/13.
@@ -104,7 +107,27 @@ public class WeekDayUtil {
 
 
     public static void main(String[] args) {
+
+
+
+       // String str = "http://www.e-picclife.com/ECPL/onlineShop/online_trip.jsp";
+
+       // String regEx = "^http://www.e-picclife.com/ECPL/onlineShop/.*$";
+        String str = "http://www.e-picclife.com/ECPL/onlineShop/online_trip.pdf";
+        String regEx= "^.*?\\.(zip|doc|docx|pdf)$";
+
+        // 编译正则表达式
+        Pattern pattern = Pattern.compile(regEx);
+        // 忽略大小写的写法
+        Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pat.matcher(str);
+        // 字符串是否与正则表达式相匹配
+        boolean rs = matcher.matches();
+        System.out.println(rs);
+
+
         //输出从2015-01-01到2015-01-21之间的所有星期一和星期二的日期。
+/*
         List daysOfOneWeek = new ArrayList();
         daysOfOneWeek.add(6);  //周六
         daysOfOneWeek.add(0);  //周日
@@ -115,6 +138,8 @@ public class WeekDayUtil {
             String s=daysNeedBookList.get(i).toString();
             System.out.println(s);
         }
+*/
+
 
         //System.out.println(MD5.sign("115.28.222.93", "qicheyitiao20160707", ""));
 

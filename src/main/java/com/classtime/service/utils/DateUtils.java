@@ -116,7 +116,14 @@ public class DateUtils {
         now.set(Calendar.DATE,now.get(Calendar.DATE)+day);
         return now.getTime();
     }
-    
+
+
+    public static Date getHourAfter(Date d,int hours){
+        Calendar now =Calendar.getInstance();
+        now.setTime(d);
+        now.set(Calendar.DATE,now.get(Calendar.HOUR)+hours);
+        return now.getTime();
+    }
 
         /**
      * 得到几天后的时间
