@@ -10,4 +10,5 @@ import java.util.List;
 public interface ClassTimeChildManager extends BaseObjectManager<ClassTimeChild,Integer> {
     int addClassTimeChildBatch(List<ClassTimeChild> classTimeChildList);
     List<ClassTimeChild> selectByMainId(int mid);
+    List<ClassTimeChild> selectByMainIdByMonth(int mid);
 }

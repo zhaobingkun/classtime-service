@@ -207,11 +207,29 @@
 
 
     <select id="selectClassMainById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select
+      <!--  select
         m.id,m.classname,c.id as c_id,c.classdatetime as c_classdatetime
         from classtimemain m,classtimechild c
         where  m.id = c.mid and m.id = #{mid,jdbcType=INTEGER}
+-->
+
+               SELECT
+        m.id,m.classname,m.classaddress,c.id AS c_id,c.classdatetime AS c_classdatetime,c.classdatetime AS c_endtime
+        FROM classtimemain m,classtimechild c
+        WHERE  m.id = c.mid AND m.id = #{mid,jdbcType=INTEGER}
     </select>
 
+
+
+    <select id="selectByMainIdByMonth" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+
+
+        SELECT
+        m.id,m.classname,c.classdatetime AS c_classdatetime,c.classdatetime AS c_endtime,m.classaddress,c.id AS c_id,
+        FROM classtimemain m,classtimechild c
+        WHERE  m.id = c.mid AND m.id = #{mid,jdbcType=INTEGER}  AND    DATE_FORMAT(c.classdatetime,'%Y-%m')=DATE_FORMAT('2016-10-10','%Y-%m')
+        ORDER BY c.classdatetime DESC
+
+    </select>
 
 </mapper>

@@ -65,4 +65,10 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
         List<ClassTimeChild> result = classTimeChildDao.selectByMainId(mid);
         return result;
     }
+
+    @Override
+    public List<ClassTimeChild> selectByMainIdByMonth(int mid) {
+        List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(mid);
+        return result;
+    }
 }

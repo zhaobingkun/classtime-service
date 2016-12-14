@@ -8,4 +8,6 @@ public interface ClassTimeMainMapper  extends  BaseObjectMapper<ClassTimeMain,In
     List<ClassTimeMain> selectClassMainForSid(int sid);
 
     List<ClassTimeMain> selectClassMainById(int mid);
+
+    List<ClassTimeMain>  selectByMainIdByMonth(int mid);
 }
