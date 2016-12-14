@@ -122,7 +122,6 @@
 
     <select id="selectByMainIdByMonth" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
 
-
         SELECT
         m.id as m_id,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
