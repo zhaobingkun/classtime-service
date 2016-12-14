@@ -1,13 +1,14 @@
 package com.classtime.service.model;
 
+import java.util.Date;
 /**
  * Created by Administrator on 2016/12/13.
  */
 
 public class viewJson {
 
-    private  String start;
-    private String end;
+    private  Date start;
+    private Date end;
     private String error;
     private String  issort;
     private Object [][] events;
@@ -33,21 +34,7 @@ public class viewJson {
     }
 
 
-    public String getStart() {
-        return start;
-    }
 
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
 
 
     public Object[][] getEvents() {
@@ -56,5 +43,21 @@ public class viewJson {
 
     public void setEvents(Object[][] events) {
         this.events = events;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
     }
 }

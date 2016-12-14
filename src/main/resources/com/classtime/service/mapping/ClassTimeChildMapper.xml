@@ -127,7 +127,7 @@
         m.id as m_id,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
         WHERE  m.id = c.mid AND m.id = #{mid,jdbcType=INTEGER}  AND    DATE_FORMAT(c.classdatetime,'%Y-%m')=DATE_FORMAT('2016-12-10','%Y-%m')
-        ORDER BY c.classdatetime DESC
+        ORDER BY c.classdatetime
 
     </select>
 
