@@ -121,7 +121,7 @@ public class DateUtils {
     public static Date getHourAfter(Date d,int hours){
         Calendar now =Calendar.getInstance();
         now.setTime(d);
-        now.set(Calendar.DATE,now.get(Calendar.HOUR)+hours);
+        now.set(Calendar.DATE,now.get(Calendar.DATE)+hours);
         return now.getTime();
     }
 
