@@ -8,5 +8,5 @@ public interface ClassTimeChildMapper extends  BaseObjectMapper<ClassTimeChild,I
     int addCodeBatch(List<ClassTimeChild> classTimeChildList);
     List<ClassTimeChild> selectByMainId(int mid);
 
-    List<ClassTimeChild> selectByMainIdByMonth(int mid);
+    List<ClassTimeChild> selectByMainIdByMonth(int sid);
 }

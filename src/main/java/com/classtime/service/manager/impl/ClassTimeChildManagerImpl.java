@@ -67,8 +67,8 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
     }
 
     @Override
-    public List<ClassTimeChild> selectByMainIdByMonth(int mid) {
-        List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(mid);
+    public List<ClassTimeChild> selectByMainIdByMonth(int sid) {
+        List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(sid);
         return result;
     }
 }
