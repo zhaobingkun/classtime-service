@@ -6,7 +6,9 @@ import com.classtime.service.model.ClassTimeChild;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/6/17.
@@ -67,8 +69,9 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
     }
 
     @Override
-    public List<ClassTimeChild> selectByMainIdByMonth(int sid) {
-        List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(sid);
+    public List<ClassTimeChild> selectByMainIdByMonth(int sid,String checkDate) {
+        Map<String,String> paramMap = new HashMap<String,String>();
+        List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(paramMap);
         return result;
     }
 }

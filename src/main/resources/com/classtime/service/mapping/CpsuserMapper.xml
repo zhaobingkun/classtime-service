@@ -211,14 +211,14 @@
     <select id="countBySelective" resultType="java.lang.Integer" parameterType="map">
         select count(id) from cpsuser
         <where>
-            <if test="status != null and status!=99">
-                status = #{status,jdbcType=TINYINT}
-            </if>
+        <if test="status != null and status!=99">
+            status = #{status,jdbcType=TINYINT}
+        </if>
 
-            <if test="companyname != null">
-                and companyname like CONCAT('%',#{companyname,jdbcType=VARCHAR},'%')
-            </if>
-        </where>
+        <if test="companyname != null">
+            and companyname like CONCAT('%',#{companyname,jdbcType=VARCHAR},'%')
+        </if>
+    </where>
     </select>
     <select id="selectBySelective" resultMap="BaseResultMap" parameterType="map">
         select

@@ -120,13 +120,24 @@
 
 
 
-    <select id="selectByMainIdByMonth" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByMainIdByMonth" resultMap="BaseResultMap" parameterType="map" >
 
         SELECT
         m.id as m_id,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
-        WHERE  m.id = c.mid AND m.sid =  #{sid,jdbcType=INTEGER}
-        ORDER BY c.classdatetime
+
+        WHERE  m.id = c.mid
+
+
+            <if test="sid >0">
+                AND  m.sid =  #{sid,jdbcType=INTEGER}
+            </if>
+
+            <if test="checkDate != null">
+                and  DATE_FORMAT(c.classdatetime,'%Y-%m')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m')
+            </if>
+
+             ORDER BY c.classdatetime
 
         <!--
          SELECT
