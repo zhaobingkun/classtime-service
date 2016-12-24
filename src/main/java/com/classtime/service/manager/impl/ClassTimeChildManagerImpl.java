@@ -70,7 +70,9 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
 
     @Override
     public List<ClassTimeChild> selectByMainIdByMonth(int sid,String checkDate) {
-        Map<String,String> paramMap = new HashMap<String,String>();
+        Map<String,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("sid",sid);
+        paramMap.put("checkDate",checkDate);
         List<ClassTimeChild> result = classTimeChildDao.selectByMainIdByMonth(paramMap);
         return result;
     }
