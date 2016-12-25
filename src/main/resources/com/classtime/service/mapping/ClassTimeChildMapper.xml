@@ -11,6 +11,8 @@
 
       <association property="classTimeMain" column="m_id" javaType="classTimeMain">
           <id column="m_id" property="id" jdbcType="BIGINT"/>
+          <id column="m_sid" property="sid" jdbcType="BIGINT"/>
+
           <result column="m_classname" property="classname" jdbcType="VARCHAR"/>
           <result column="m_classaddress" property="classaddress" jdbcType="VARCHAR"/>
       </association>
@@ -123,7 +125,7 @@
     <select id="selectByMainIdByMonth" resultMap="BaseResultMap" parameterType="map" >
 
         SELECT
-        m.id as m_id,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
+        m.id as m_id,m.sid as m_sid,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
 
         WHERE  m.id = c.mid
