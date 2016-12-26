@@ -11,4 +11,5 @@ public interface ClassTimeChildManager extends BaseObjectManager<ClassTimeChild,
     int addClassTimeChildBatch(List<ClassTimeChild> classTimeChildList);
     List<ClassTimeChild> selectByMainId(int mid);
     List<ClassTimeChild> selectByMainIdByMonth(int sid,String checkDate);
+    List<ClassTimeChild> selectByMainIdByDay(int sid,String checkDate);
 }

@@ -151,4 +151,31 @@
     </select>
 
 
+    <select id="selectByMainIdByDay" resultMap="BaseResultMap" parameterType="map" >
+
+        SELECT
+        m.id as m_id,m.sid as m_sid,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
+        FROM classtimemain m,classtimechild c
+
+        WHERE  m.id = c.mid
+
+
+        <if test="sid >0">
+            AND  m.sid =  #{sid,jdbcType=INTEGER}
+        </if>
+
+        <if test="checkDate != null">
+            and  DATE_FORMAT(c.classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d')
+        </if>
+
+        ORDER BY c.classdatetime
+
+        <!--
+         SELECT
+        m.id as m_id,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
+        FROM classtimemain m,classtimechild c
+        WHERE  m.id = c.mid AND m.sid =  #{sid,jdbcType=INTEGER}  AND    DATE_FORMAT(c.classdatetime,'%Y-%m')=DATE_FORMAT('2016-12-10','%Y-%m')
+        ORDER BY c.classdatetime
+        -->
+    </select>
 </mapper>

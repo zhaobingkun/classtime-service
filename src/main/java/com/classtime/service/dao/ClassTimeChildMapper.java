@@ -10,4 +10,5 @@ public interface ClassTimeChildMapper extends  BaseObjectMapper<ClassTimeChild,I
     List<ClassTimeChild> selectByMainId(int mid);
 
     List<ClassTimeChild> selectByMainIdByMonth(Map paraMap);
+    List<ClassTimeChild> selectByMainIdByDay(Map paraMap);
 }
