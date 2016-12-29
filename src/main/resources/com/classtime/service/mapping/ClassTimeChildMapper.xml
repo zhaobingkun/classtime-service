@@ -33,9 +33,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.classtime.service.model.ClassTimeChild" >
-    insert into classtimechild (id, mid, classdatetime, 
+    insert into classtimechild (id, mid, classdatetime,endtime
       status)
-    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{classdatetime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{classdatetime,jdbcType=TIMESTAMP},  #{endtime,jdbcType=TIMESTAMP},
       #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.classtime.service.model.ClassTimeChild" >
@@ -49,7 +49,11 @@
       </if>
       <if test="classdatetime != null" >
         classdatetime,
-      </if>
+    </if>
+
+        <if test="endtime != null" >
+            endtime,
+        </if>
       <if test="status != null" >
         status,
       </if>
@@ -64,6 +68,9 @@
       <if test="classdatetime != null" >
         #{classdatetime,jdbcType=TIMESTAMP},
       </if>
+        <if test="endtime != null" >
+            #{endtime,jdbcType=TIMESTAMP},
+        </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -78,6 +85,11 @@
       <if test="classdatetime != null" >
         classdatetime = #{classdatetime,jdbcType=TIMESTAMP},
       </if>
+
+        <if test="endtime != null" >
+            endtime = #{endtime,jdbcType=TIMESTAMP},
+        </if>
+
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -88,6 +100,7 @@
     update classtimechild
     set mid = #{mid,jdbcType=INTEGER},
       classdatetime = #{classdatetime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -96,10 +109,10 @@
     <insert id="addCodeBatch" useGeneratedKeys="true" parameterType="java.util.List">
 
 
-        insert into classtimechild (mid,classdatetime)
+        insert into classtimechild (mid,classdatetime,endtime)
         values
         <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.mid},#{item.classdatetime})
+            (#{item.mid},#{item.classdatetime},#{item.endtime})
         </foreach>
 
     </insert>
