@@ -129,7 +129,7 @@
         SELECT
         m.id,m.classname,m.classaddress,c.id AS c_id,c.classdatetime AS c_classdatetime,c.classdatetime AS c_endtime
         FROM classtimemain m,classtimechild c
-        WHERE  m.id = c.mid AND m.id = #{mid,jdbcType=INTEGER}
+        WHERE  m.id = c.mid and c.status = 0 AND m.id = #{mid,jdbcType=INTEGER}
 
     </select>
 
@@ -141,7 +141,7 @@
         m.id as m_id,m.sid as m_sid,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
 
-        WHERE  m.id = c.mid
+        WHERE  m.id = c.mid and c.status = 0
 
 
             <if test="sid >0">
@@ -170,7 +170,7 @@
         m.id as m_id,m.sid as m_sid,m.classname as m_classname,m.classaddress as m_classaddress,c.id ,c.classdatetime
         FROM classtimemain m,classtimechild c
 
-        WHERE  m.id = c.mid
+        WHERE  m.id = c.mid and c.status = 0
 
 
         <if test="sid >0">
