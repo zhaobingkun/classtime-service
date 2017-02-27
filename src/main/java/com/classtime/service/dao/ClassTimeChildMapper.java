@@ -8,7 +8,7 @@ import java.util.Map;
 public interface ClassTimeChildMapper extends  BaseObjectMapper<ClassTimeChild,Integer>{
     int addCodeBatch(List<ClassTimeChild> classTimeChildList);
     List<ClassTimeChild> selectByMainId(int mid);
-
     List<ClassTimeChild> selectByMainIdByMonth(Map paraMap);
     List<ClassTimeChild> selectByMainIdByDay(Map paraMap);
+    List<ClassTimeChild> selectMobileByDay(Map paraMap);
 }

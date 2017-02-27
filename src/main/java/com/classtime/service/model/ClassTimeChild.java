@@ -14,6 +14,8 @@ public class ClassTimeChild  extends BaseObject{
 
     private String content;
 
+    private String mobile;
+
     private Integer status;
 
     private ClassTimeMain classTimeMain;
@@ -72,5 +74,13 @@ public class ClassTimeChild  extends BaseObject{
 
     public void setClassTimeMain(ClassTimeMain classTimeMain) {
         this.classTimeMain = classTimeMain;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

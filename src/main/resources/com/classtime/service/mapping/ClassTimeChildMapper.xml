@@ -8,11 +8,11 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
 
       <association property="classTimeMain" column="m_id" javaType="classTimeMain">
           <id column="m_id" property="id" jdbcType="BIGINT"/>
           <id column="m_sid" property="sid" jdbcType="BIGINT"/>
-
           <result column="m_classname" property="classname" jdbcType="VARCHAR"/>
           <result column="m_classaddress" property="classaddress" jdbcType="VARCHAR"/>
       </association>
@@ -191,4 +191,15 @@
         ORDER BY c.classdatetime
         -->
     </select>
+
+    <select id="selectMobileByDay" resultMap="BaseResultMap" parameterType="map" >
+        SELECT
+        m.id AS m_id,m.sid AS m_sid,m.classname AS m_classname,m.classaddress AS m_classaddress,c.id ,c.classdatetime,u.contactphone as mobile
+        FROM classtimemain m,classtimechild c,student s,cpsuser u
+        WHERE  m.id = c.mid AND c.status = 0  AND m.sid=s.id AND s.uid = u.id
+        and  DATE_FORMAT(c.classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d')
+        ORDER BY c.classdatetime
+
+    </select>
+
 </mapper>
