@@ -94,4 +94,22 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
         List<ClassTimeChild> result = classTimeChildDao.selectMobileByDay(paramMap);
         return result;
     }
+
+    @Override
+    public int updateClassStatus(String checkDate) {
+        Map<String,Object> paramMap = new HashMap<String,Object>();
+
+        paramMap.put("checkDate",checkDate);
+        int result = classTimeChildDao.updateClassStatus(paramMap);
+        return 0;
+    }
+
+    @Override
+    public List<ClassTimeChild> selectStatusByChild(int sid) {
+        Map<String,Object> paramMap = new HashMap<String,Object>();
+
+        paramMap.put("sid",sid);
+        List<ClassTimeChild> result = classTimeChildDao.selectStatusByChild(paramMap);
+        return result;
+    }
 }
