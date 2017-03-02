@@ -105,10 +105,10 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
     }
 
     @Override
-    public List<ClassTimeChild> selectStatusByChild(int sid) {
+    public List<ClassTimeChild> selectStatusByChild(int mid) {
         Map<String,Object> paramMap = new HashMap<String,Object>();
 
-        paramMap.put("sid",sid);
+        paramMap.put("mid",mid);
         List<ClassTimeChild> result = classTimeChildDao.selectStatusByChild(paramMap);
         return result;
     }

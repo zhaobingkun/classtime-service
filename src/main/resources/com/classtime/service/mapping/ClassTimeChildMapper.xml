@@ -208,7 +208,7 @@
     <select id="selectStatusByChild" resultMap="BaseResultMap" parameterType="map">
      /* SELECT COUNT(*) as classnum,status FROM  classtimechild  GROUP BY STATUS*/
 
-     SELECT COUNT(*) AS classnum,c.status,m.sid FROM  classtimechild  c,classtimemain m WHERE c.mid = m.id AND  m.sid =  #{sid,jdbcType=INTEGER}
+     SELECT COUNT(*) AS classnum,c.status,m.sid FROM  classtimechild  c,classtimemain m WHERE c.mid = m.id AND  m.id =  #{mid,jdbcType=INTEGER}
       GROUP BY c.STATUS
 
     </select>

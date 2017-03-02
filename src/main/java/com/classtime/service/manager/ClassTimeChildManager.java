@@ -14,5 +14,5 @@ public interface ClassTimeChildManager extends BaseObjectManager<ClassTimeChild,
     List<ClassTimeChild> selectByMainIdByDay(int sid,String checkDate);
     List<ClassTimeChild> selectMobileByDay(String checkDate);
     int updateClassStatus(String checkDate);
-    List<ClassTimeChild> selectStatusByChild(int sid);
+    List<ClassTimeChild> selectStatusByChild(int mid);
 }
