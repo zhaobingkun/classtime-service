@@ -4,21 +4,31 @@
   <resultMap id="BaseResultMap" type="com.classtime.service.model.ClassTimeChild" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="mid" property="mid" jdbcType="INTEGER" />
+      <result column="sid" property="sid" jdbcType="INTEGER" />
     <result column="classdatetime" property="classdatetime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
-
+      <result column="classname" property="classname" jdbcType="VARCHAR" />
+      <result column="classaddress" property="classaddress" jdbcType="VARCHAR" />
+      <result column="student" property="student" jdbcType="VARCHAR" />
       <association property="classTimeMain" column="m_id" javaType="classTimeMain">
-          <id column="m_id" property="id" jdbcType="BIGINT"/>
-          <id column="m_sid" property="sid" jdbcType="BIGINT"/>
-          <result column="m_classname" property="classname" jdbcType="VARCHAR"/>
-          <result column="m_classaddress" property="classaddress" jdbcType="VARCHAR"/>
-      </association>
+      <id column="m_id" property="id" jdbcType="BIGINT"/>
+      <id column="m_sid" property="sid" jdbcType="BIGINT"/>
+      <result column="m_classname" property="classname" jdbcType="VARCHAR"/>
+      <result column="m_classaddress" property="classaddress" jdbcType="VARCHAR"/>
+  </association>
 
 
   </resultMap>
+
+
+<!--    <resultMap id="CountResultMap" type="com.classtime.service.model.ClassTimeChild" >
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="classnum" property="classnum" jdbcType="INTEGER" />
+    </resultMap>-->
+
   <sql id="Base_Column_List" >
     id, mid, classdatetime, status,endtime,content
   </sql>
@@ -192,14 +202,38 @@
         -->
     </select>
 
+
+
+    <!--  统计课程状态数。并更新主表课程数量 -->
+    <select id="selectStatusByChild" resultMap="BaseResultMap" parameterType="map">
+     /* SELECT COUNT(*) as classnum,status FROM  classtimechild  GROUP BY STATUS*/
+
+     SELECT COUNT(*) AS classnum,c.status,m.sid FROM  classtimechild  c,classtimemain m WHERE c.mid = m.id AND  m.sid =  #{sid,jdbcType=INTEGER}
+      GROUP BY c.STATUS
+
+    </select>
+
+
+
+    <!--定时任务，每天晚上8点遍历第二天课程，并发短信-->
     <select id="selectMobileByDay" resultMap="BaseResultMap" parameterType="map" >
         SELECT
-        m.id AS m_id,m.sid AS m_sid,m.classname AS m_classname,m.classaddress AS m_classaddress,c.id ,c.classdatetime,u.contactphone as mobile
+        m.id AS mid,m.sid AS sid,m.classname AS classname,m.classaddress AS classaddress,c.id ,c.classdatetime,u.contactphone as mobile,s.name as student
         FROM classtimemain m,classtimechild c,student s,cpsuser u
         WHERE  m.id = c.mid AND c.status = 0  AND m.sid=s.id AND s.uid = u.id
         and  DATE_FORMAT(c.classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d')
         ORDER BY c.classdatetime
 
     </select>
+
+
+    <!--定时任务，每天晚上0点更新已经上过的课的状态，今后时间上可以调整为每小时跑一次任务-->
+    <update id="updateClassStatus"  parameterType="map" >
+       /*UPDATE classtimechild SET STATUS = 1  WHERE  DATE_FORMAT(classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d') AND STATUS = 0*/
+       UPDATE classtimechild SET STATUS = 1  WHERE  DATE_FORMAT(classdatetime,'%Y-%m-%d %h') &lt;  DATE_FORMAT(#{checkDate,'%Y-%m-%d %h')  AND STATUS = 0
+    </update>
+
+
+
 
 </mapper>

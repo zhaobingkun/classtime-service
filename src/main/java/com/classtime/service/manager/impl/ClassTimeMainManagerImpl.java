@@ -11,8 +11,9 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/6/17.
  */
-@Service
+@Service("ClassTimeMainManager")
 public class ClassTimeMainManagerImpl implements ClassTimeMainManager {
+
     @Autowired
     private ClassTimeMainMapper classTimeMainDao;
 
