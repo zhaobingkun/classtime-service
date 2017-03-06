@@ -229,8 +229,7 @@
 
     <!--定时任务，每天晚上0点更新已经上过的课的状态，今后时间上可以调整为每小时跑一次任务-->
     <update id="updateClassStatus"  parameterType="map" >
-       /*UPDATE classtimechild SET STATUS = 1  WHERE  DATE_FORMAT(classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d') AND STATUS = 0*/
-       UPDATE classtimechild SET STATUS = 1  WHERE  DATE_FORMAT(classdatetime,'%Y-%m-%d %h') &lt;  DATE_FORMAT(#{checkDate,'%Y-%m-%d %h')  AND STATUS = 0
+       UPDATE classtimechild SET STATUS = 1  WHERE  DATE_FORMAT(classdatetime,'%Y-%m-%d %h') &lt; DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d %h')  AND STATUS = 0
     </update>
 
 

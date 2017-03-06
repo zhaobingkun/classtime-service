@@ -104,6 +104,9 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
         System.out.println("service checkDate==="+checkDate);
 
         int result = classTimeChildDao.updateClassStatus(paramMap);
+
+        System.out.println("service result==="+result);
+
         return result;
     }
 
