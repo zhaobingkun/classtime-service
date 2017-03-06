@@ -100,8 +100,11 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
         Map<String,Object> paramMap = new HashMap<String,Object>();
 
         paramMap.put("checkDate",checkDate);
+
+        System.out.println("service checkDate==="+checkDate);
+
         int result = classTimeChildDao.updateClassStatus(paramMap);
-        return 0;
+        return result;
     }
 
     @Override
