@@ -7,6 +7,8 @@
       <result column="sid" property="sid" jdbcType="INTEGER" />
     <result column="classdatetime" property="classdatetime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
+
+      <result column="classnum" property="classnum" jdbcType="INTEGER" />
     <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
@@ -41,7 +43,14 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from classtimechild
     where id = #{id,jdbcType=INTEGER}
-  </delete>
+</delete>
+
+    <delete id="deleteByMainId" parameterType="java.lang.Integer" >
+        delete from classtimechild
+        where mid = #{mid,jdbcType=INTEGER}
+    </delete>
+
+
   <insert id="insert" parameterType="com.classtime.service.model.ClassTimeChild" >
     insert into classtimechild (id, mid, classdatetime,endtime
       status)
@@ -208,7 +217,7 @@
     <select id="selectStatusByChild" resultMap="BaseResultMap" parameterType="map">
      /* SELECT COUNT(*) as classnum,status FROM  classtimechild  GROUP BY STATUS*/
 
-     SELECT COUNT(*) AS classnum,c.status,m.sid FROM  classtimechild  c,classtimemain m WHERE c.mid = m.id AND  m.id =  #{mid,jdbcType=INTEGER}
+      SELECT COUNT(*) AS classnum,c.status,m.sid FROM  classtimechild  c,classtimemain m WHERE c.mid = m.id AND  m.id =  #{mid,jdbcType=INTEGER}
       GROUP BY c.STATUS
 
     </select>

@@ -3,8 +3,6 @@ package com.classtime.service.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/6/13.
@@ -34,7 +32,7 @@ public class WeekDayUtil {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         // 需要查询的星期系数
         String strWeekNumber = weekForNum(weekDays);
-        System.out.println("strWeekNumber="+strWeekNumber);
+      //  System.out.println("strWeekNumber="+strWeekNumber);
         try {
             dateFrom = sdf.format(sdf.parse(dateFrom).getTime() - perDayMilSec);
             int i=0;
@@ -43,6 +41,9 @@ public class WeekDayUtil {
                 time = time + perDayMilSec;
                 Date date = new Date(time);
                 dateFrom = sdf.format(date);
+
+                System.out.println("dateFrom="+dateFrom);
+
                // if (dateFrom.compareTo(dateEnd) <= 0) {
                     // 查询的某一时间的星期系数
                     Integer weekDay = dayForWeek(date);
@@ -113,7 +114,7 @@ public class WeekDayUtil {
        // String str = "http://www.e-picclife.com/ECPL/onlineShop/online_trip.jsp";
 
        // String regEx = "^http://www.e-picclife.com/ECPL/onlineShop/.*$";
-        String str = "http://www.e-picclife.com/ECPL/onlineShop/online_trip.pdf";
+     /*   String str = "http://www.e-picclife.com/ECPL/onlineShop/online_trip.pdf";
         String regEx= "^.*?\\.(zip|doc|docx|pdf)$";
 
         // 编译正则表达式
@@ -124,10 +125,10 @@ public class WeekDayUtil {
         // 字符串是否与正则表达式相匹配
         boolean rs = matcher.matches();
         System.out.println(rs);
-
+*/
 
         //输出从2015-01-01到2015-01-21之间的所有星期一和星期二的日期。
-/*
+
         List daysOfOneWeek = new ArrayList();
         daysOfOneWeek.add(6);  //周六
         daysOfOneWeek.add(0);  //周日
@@ -138,7 +139,7 @@ public class WeekDayUtil {
             String s=daysNeedBookList.get(i).toString();
             System.out.println(s);
         }
-*/
+
 
 
         //System.out.println(MD5.sign("115.28.222.93", "qicheyitiao20160707", ""));

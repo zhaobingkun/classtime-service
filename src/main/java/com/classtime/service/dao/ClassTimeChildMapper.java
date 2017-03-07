@@ -13,4 +13,6 @@ public interface ClassTimeChildMapper extends  BaseObjectMapper<ClassTimeChild,I
     List<ClassTimeChild> selectMobileByDay(Map paraMap);
     int updateClassStatus(Map paraMap);
     List<ClassTimeChild> selectStatusByChild(Map paraMap);
+
+    int deleteByMainId(int mid);
 }

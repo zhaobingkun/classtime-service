@@ -101,11 +101,11 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
 
         paramMap.put("checkDate",checkDate);
 
-        System.out.println("service checkDate==="+checkDate);
+        //System.out.println("service checkDate==="+checkDate);
 
         int result = classTimeChildDao.updateClassStatus(paramMap);
 
-        System.out.println("service result==="+result);
+        //System.out.println("service result==="+result);
 
         return result;
     }
@@ -116,6 +116,12 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
 
         paramMap.put("mid",mid);
         List<ClassTimeChild> result = classTimeChildDao.selectStatusByChild(paramMap);
+        return result;
+    }
+
+    @Override
+    public int deleteByMainId(int mid) {
+        int result = classTimeChildDao.deleteByMainId(mid);
         return result;
     }
 }
