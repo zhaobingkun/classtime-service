@@ -243,5 +243,16 @@
 
 
 
+    <select id="selectByStatus" resultMap="BaseResultMap" parameterType="map" >
+        SELECT
+        m.id AS mid,m.sid AS sid,m.classname AS classname,m.classaddress AS classaddress,c.id ,c.classdatetime,u.contactphone as mobile,s.name as student
+        FROM classtimemain m,classtimechild c,student s,cpsuser u
+        WHERE  m.id = c.mid  AND m.sid=s.id AND s.uid = u.id
+        and c.status = #{status,jdbcType=INTEGER} and c.mid = #{mid,jdbcType=INTEGER}
+        ORDER BY c.classdatetime
+
+    </select>
+
+
 
 </mapper>

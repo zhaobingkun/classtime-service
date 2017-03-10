@@ -120,6 +120,15 @@ public class ClassTimeChildManagerImpl implements ClassTimeChildManager {
     }
 
     @Override
+    public List<ClassTimeChild> selectByStatus(int mid,int status) {
+        Map<String,Object> paramMap = new HashMap<String,Object>();
+        paramMap.put("status",status);
+        paramMap.put("mid",mid);
+        List<ClassTimeChild> result = classTimeChildDao.selectByStatus(paramMap);
+        return result;
+    }
+
+    @Override
     public int deleteByMainId(int mid) {
         int result = classTimeChildDao.deleteByMainId(mid);
         return result;
