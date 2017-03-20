@@ -30,6 +30,8 @@ public class Cpsuser extends BaseObject {
     private String ext1;
     private String randomcode;
 
+    private int sendstatus;
+
     public Long getId() {
         return id;
     }
@@ -140,5 +142,13 @@ public class Cpsuser extends BaseObject {
 
     public void setIsorg(int isorg) {
         this.isorg = isorg;
+    }
+
+    public int getSendstatus() {
+        return sendstatus;
+    }
+
+    public void setSendstatus(int sendstatus) {
+        this.sendstatus = sendstatus;
     }
 }

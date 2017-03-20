@@ -8,6 +8,7 @@
     <result column="classdatetime" property="classdatetime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
 
+
       <result column="classnum" property="classnum" jdbcType="INTEGER" />
     <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
@@ -231,6 +232,7 @@
         FROM classtimemain m,classtimechild c,student s,cpsuser u
         WHERE  m.id = c.mid AND c.status = 0  AND m.sid=s.id AND s.uid = u.id
         and  DATE_FORMAT(c.classdatetime,'%Y-%m-%d')=DATE_FORMAT(#{checkDate,jdbcType=VARCHAR},'%Y-%m-%d')
+        and u.sendstatus = 0
         ORDER BY c.classdatetime
 
     </select>

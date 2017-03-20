@@ -15,6 +15,7 @@
         <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
         <result column="ischeck" property="isorg" jdbcType="BIT"/>
         <result column="randomcode" property="randomcode" jdbcType="VARCHAR"/>
+        <result column="sendstatus" property="sendstatus" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List">
     id, nickname, loginname, passwd, email, status, registertime, validatecode, contactphone, isorg, updatetime,ischeck,randomcode
