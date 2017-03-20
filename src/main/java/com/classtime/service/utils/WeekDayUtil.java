@@ -25,6 +25,8 @@ public class WeekDayUtil {
     }
 
 
+
+
     public static List getDates(String dateFrom, String dateEnd, List weekDays,int num) {
         long time;
         long perDayMilSec = 24L * 60 * 60 * 1000;
@@ -58,6 +60,44 @@ public class WeekDayUtil {
 
 
             }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateList;
+    }
+
+
+    public static List getDates(String dateFrom, String dateEnd, List weekDays) {
+        long time;
+        long perDayMilSec = 24L * 60 * 60 * 1000;
+        List dateList = new ArrayList();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        // 需要查询的星期系数
+        String strWeekNumber = weekForNum(weekDays);
+        //  System.out.println("strWeekNumber="+strWeekNumber);
+        try {
+            dateFrom = sdf.format(sdf.parse(dateFrom).getTime() - perDayMilSec);
+
+            int i=0;
+            while (sdf.parse(dateFrom).getTime()<sdf.parse(dateEnd).getTime()) {
+                time = sdf.parse(dateFrom).getTime();
+                time = time + perDayMilSec;
+                Date date = new Date(time);
+                dateFrom = sdf.format(date);
+                System.out.println("dateFrom="+dateFrom);
+
+                // if (dateFrom.compareTo(dateEnd) <= 0) {
+                // 查询的某一时间的星期系数
+                Integer weekDay = dayForWeek(date);
+                // 判断当期日期的星期系数是否是需要查询的
+                if (strWeekNumber.contains(weekDay.toString())) {
+                    dateList.add(dateFrom);
+                    i++;
+                }
+            }
+
+            System.out.println(i);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -133,7 +173,7 @@ public class WeekDayUtil {
         daysOfOneWeek.add(6);  //周六
         daysOfOneWeek.add(0);  //周日
 
-        List daysNeedBookList = getDates("2016-01-01", "2016-07-21", daysOfOneWeek,48);
+        List daysNeedBookList = getDates("2017-01-01", "2017-02-01", daysOfOneWeek);
 
         for(int i=0;i<daysNeedBookList.size();i++){
             String s=daysNeedBookList.get(i).toString();
